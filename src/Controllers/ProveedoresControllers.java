@@ -65,6 +65,10 @@ public class ProveedoresControllers implements ActionListener, MouseListener {
                 JOptionPane.showMessageDialog(null, "El campo es obligatorio", "Atención!", JOptionPane.WARNING_MESSAGE);
             } else {
                 pr.setProveedor(views.txtNombreProveedor.getText());
+                pr.setTelefono(views.txtTelefono.getText());
+                pr.setDireccion(views.txtDireccion.getText());
+                pr.setCorreo(views.txtEmail.getText());
+                pr.setObservaciones(views.txtObservaciones.getText());
                 pr.setIdproveedor(Integer.parseInt(views.txtIdProveedor.getText()));
                 if (prDao.modificar(pr)) {
                     limpiarTable();
