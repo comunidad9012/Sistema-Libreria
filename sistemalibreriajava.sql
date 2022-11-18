@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-11-2022 a las 00:32:20
+-- Tiempo de generación: 18-11-2022 a las 00:59:23
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `libreriajava`
+-- Base de datos: `borrar`
 --
 
 -- --------------------------------------------------------
@@ -181,15 +181,14 @@ DELIMITER ;
 --
 
 CREATE TABLE `proveedor` (
-  `codproveedor` int(11) NOT NULL,
-  `proveedor` varchar(100) DEFAULT NULL,
-  `contacto` varchar(100) DEFAULT NULL,
-  `telefono` bigint(11) DEFAULT NULL,
-  `direccion` varchar(50) DEFAULT NULL,
+  `idproveedor` int(11) NOT NULL,
+  `proveedor` varchar(20) DEFAULT NULL,
+  `telefono` varchar(15) DEFAULT NULL,
+  `direccion` text DEFAULT NULL,
   `correo` varchar(35) DEFAULT NULL,
   `observaciones` varchar(100) DEFAULT NULL,
   `date_add` datetime NOT NULL DEFAULT current_timestamp(),
-  `usuario_id` int(11) NOT NULL,
+  `usuario_id` int(11) DEFAULT NULL,
   `estatus` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -203,6 +202,15 @@ CREATE TABLE `rol` (
   `idrol` int(11) NOT NULL,
   `rol` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `rol`
+--
+
+INSERT INTO `rol` (`idrol`, `rol`) VALUES
+(1, 'Administrador'),
+(2, 'Supervisor'),
+(3, 'Vendedor');
 
 -- --------------------------------------------------------
 
@@ -218,6 +226,14 @@ CREATE TABLE `usuario` (
   `clave` varchar(100) DEFAULT NULL,
   `rol` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`idusuario`, `nombre`, `correo`, `usuario`, `clave`, `rol`) VALUES
+(3, 'Damian Mendez', 'damian.vendedor@gmail.com', 'vendedor', '25f9e794323b453885f5181f1b624d0b', 3),
+(43, 'Gerardo Mendez', 'mendez.admin@gmail.com', 'admin', '202cb962ac59075b964b07152d234b70', 1);
 
 --
 -- Índices para tablas volcadas
@@ -298,7 +314,7 @@ ALTER TABLE `libro`
 -- Indices de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  ADD PRIMARY KEY (`codproveedor`),
+  ADD PRIMARY KEY (`idproveedor`),
   ADD KEY `usuario_id` (`usuario_id`);
 
 --
@@ -376,7 +392,7 @@ ALTER TABLE `libro`
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `codproveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `idproveedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -448,7 +464,7 @@ ALTER TABLE `factura`
 -- Filtros para la tabla `libro`
 --
 ALTER TABLE `libro`
-  ADD CONSTRAINT `libro_ibfk_1` FOREIGN KEY (`proveedor`) REFERENCES `proveedor` (`codproveedor`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `libro_ibfk_1` FOREIGN KEY (`proveedor`) REFERENCES `proveedor` (`idproveedor`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `libro_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `libro_ibfk_3` FOREIGN KEY (`categoria`) REFERENCES `categoria` (`idcategoria`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `libro_ibfk_4` FOREIGN KEY (`autor`) REFERENCES `autor` (`idautor`) ON DELETE CASCADE ON UPDATE CASCADE,

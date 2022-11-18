@@ -6,9 +6,8 @@ package Models;
  */
 public class Proveedores {
 
-    private int codproveedor;
+    private int idproveedor;
     private String proveedor;
-    private String contacto;
     private String telefono;
     private String direccion;
     private String correo;
@@ -20,10 +19,9 @@ public class Proveedores {
     public Proveedores() {
     }
 
-    public Proveedores(int codproveedor, String proveedor, String contacto, String telefono, String direccion, String correo, String observaciones, String date_add, String usuario_id, String estatus) {
-        this.codproveedor = codproveedor;
+    public Proveedores(int idproveedor, String proveedor, String telefono, String direccion, String correo, String observaciones, String date_add, String usuario_id, String estatus) {
+        this.idproveedor = idproveedor;
         this.proveedor = proveedor;
-        this.contacto = contacto;
         this.telefono = telefono;
         this.direccion = direccion;
         this.correo = correo;
@@ -33,12 +31,12 @@ public class Proveedores {
         this.estatus = estatus;
     }
 
-    public int getCodproveedor() {
-        return codproveedor;
+    public int getIdproveedor() {
+        return idproveedor;
     }
 
-    public void setCodproveedor(int codproveedor) {
-        this.codproveedor = codproveedor;
+    public void setIdproveedor(int idproveedor) {
+        this.idproveedor = idproveedor;
     }
 
     public String getProveedor() {
@@ -47,14 +45,6 @@ public class Proveedores {
 
     public void setProveedor(String proveedor) {
         this.proveedor = proveedor;
-    }
-
-    public String getContacto() {
-        return contacto;
-    }
-
-    public void setContacto(String contacto) {
-        this.contacto = contacto;
     }
 
     public String getTelefono() {
